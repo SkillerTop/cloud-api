@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Головна</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Ласкаво просимо до Cloud API</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/status}">Стан платформи</a></li>
+        <li><a th:href="@{/files}">Файли</a></li>
+        <li><a th:href="@{/users/register}">Реєстрація</a></li>
+        <li><a th:href="@{/users/login}">Вхід</a></li>
+        <li><a th:href="@{/users/delete}">Видалення акаунту</a></li>
+    </ul>
+</nav>
+</body>
+</html>

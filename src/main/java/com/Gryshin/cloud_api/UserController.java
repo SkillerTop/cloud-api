@@ -1,33 +1,39 @@
 package com.Gryshin.cloud_api;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import jakarta.validation.Valid;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api/users")
+@Controller
+@RequestMapping("/users")
 public class UserController {
 
-    // Створення нового облікового запису
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
     @PostMapping("/register")
-    public String registerUser(@RequestBody User user) {
-        // Заглушка для реєстрації користувача
-        return "Користувач зареєстрований: " + user.getUsername();
+    public String registerUser(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "register";
+        }
+        model.addAttribute("message", "Користувач зареєстрований: " + user.getUsername());
+        return "success";
     }
 
-    // Авторизація користувача
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+
     @PostMapping("/login")
-    public String loginUser(@RequestBody User user) {
-        // Заглушка для авторизації користувача
-        return "Користувач авторизований: " + user.getUsername();
-    }
-
-    // Видалення облікового запису користувача
-    @DeleteMapping("/delete")
-    public String deleteUser(@RequestBody User user) {
-        // Заглушка для видалення користувача
-        return "Користувач видалений: " + user.getUsername();
+    public String loginUser(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("message", "Користувач авторизований: " + user.getUsername());
+        return "success";
     }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Видалення акаунту</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h2>Видалення акаунту</h2>
+<form th:action="@{/users/delete}" method="post" th:object="${user}">
+    <label>Ім'я користувача:</label>
+    <input type="text" th:field="*{username}" required />
+
+    <label>Пароль:</label>
+    <input type="password" th:field="*{password}" required />
+
+    <button type="submit">Видалити акаунт</button>
+</form>
+
+<a th:href="@{/}">Повернутися на головну</a>
+</body>
+</html>

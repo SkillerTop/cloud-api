@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Файли</title>
+</head>
+<body>
+<h2>Список файлів</h2>
+<ul>
+    <li th:each="file : ${files}" th:text="${file}"></li>
+</ul>
+
+<h3>Завантажити файл</h3>
+<form th:action="@{/upload}" method="post">
+    <input type="text" name="file" required />
+    <button type="submit">Завантажити</button>
+</form>
+
+<p th:if="${message}" th:text="${message}"></p>
+</body>
+</html>
