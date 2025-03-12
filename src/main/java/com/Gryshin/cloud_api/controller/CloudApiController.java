@@ -1,8 +1,9 @@
-package com.Gryshin.cloud_api;
+package com.Gryshin.cloud_api.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import jakarta.servlet.http.HttpSession;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
@@ -11,7 +12,11 @@ import oshi.hardware.GlobalMemory;
 public class CloudApiController {
 
     @GetMapping("/status")
-    public String getPlatformStatus(Model model) {
+    public String getPlatformStatus(Model model, HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/users/login";
+        }
+
         SystemInfo systemInfo = new SystemInfo();
         CentralProcessor processor = systemInfo.getHardware().getProcessor();
         long[] prevTicks = processor.getSystemCpuLoadTicks();

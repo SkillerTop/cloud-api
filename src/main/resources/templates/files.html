@@ -1,20 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="uk">
 <head>
-    <title>Файли</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завантаження файлів</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h2>Список файлів</h2>
-<ul>
-    <li th:each="file : ${files}" th:text="${file}"></li>
-</ul>
+<h1>Завантаження файлів</h1>
 
-<h3>Завантажити файл</h3>
-<form th:action="@{/upload}" method="post">
-    <input type="text" name="file" required />
+<!-- Статуси -->
+<div th:if="${param.success}">
+    <p style="color: green;">Файл успішно завантажено!</p>
+</div>
+<div th:if="${param.error}">
+    <p style="color: red;" th:text="'Помилка: ' + ${param.error}"></p>
+</div>
+
+<!-- Форма завантаження файлів -->
+<form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+    <input type="file" name="file" />
     <button type="submit">Завантажити</button>
 </form>
 
-<p th:if="${message}" th:text="${message}"></p>
+<!-- Список файлів -->
+<div class="file-list">
+    <h2>Список файлів</h2>
+    <ul>
+        <th:block th:each="file : ${files}">
+            <li>
+                <span th:text="${file.fileName}"></span> <!-- Використовуємо file.fileName -->
+
+                <!-- Форма для видалення файлів -->
+                <form action="/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="filename" th:value="${file.fileName}" />
+                    <button type="submit">Видалити</button>
+                </form>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<!-- Кнопка для повернення на головну сторінку -->
+<div>
+    <a href="/" class="back-button">На головну</a>
+</div>
+
 </body>
 </html>

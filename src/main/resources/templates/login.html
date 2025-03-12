@@ -5,17 +5,17 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-<h2>Вхід</h2>
-<form th:action="@{/users/login}" method="post" th:object="${user}">
-    <label>Ім'я користувача:</label>
-    <input type="text" th:field="*{username}" required />
+<h1>Вхід до Cloud API</h1>
+<form action="#" method="post">
+    <label for="username">Логін:</label>
+    <input type="text" id="username" name="username" required>
 
-    <label>Пароль:</label>
-    <input type="password" th:field="*{password}" required />
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
 
     <button type="submit">Увійти</button>
 </form>
 
-<a th:href="@{/}">Повернутися на головну</a>
+<p>Ще не маєте акаунту? <a th:href="@{/users/register}" class="btn-register">Зареєструватися</a></p>
 </body>
 </html>

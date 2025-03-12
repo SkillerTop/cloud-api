@@ -6,6 +6,9 @@
 </head>
 <body>
 <h2>Видалення акаунту</h2>
+
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
 <form th:action="@{/users/delete}" method="post" th:object="${user}">
     <label>Ім'я користувача:</label>
     <input type="text" th:field="*{username}" required />
