@@ -56,7 +56,7 @@ public class FileController {
     }
 
     // Видалення файлу
-    @Transactional  // Додаємо транзакційність до цього методу
+    @Transactional
     @PostMapping("/delete")
     public String deleteFile(@RequestParam String filename, Model model) {
         File file = new File("uploads", filename);
