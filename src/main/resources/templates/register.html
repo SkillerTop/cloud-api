@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Реєстрація</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
 <h2>Реєстрація користувача</h2>
@@ -19,6 +20,9 @@
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 
     <button type="submit">Зареєструватися</button>
+</form>
+<form>
+    <p><a th:href="@{/users/login}" class="btn-register">Повернутись до входу</a></p>
 </form>
 </body>
 </html>
