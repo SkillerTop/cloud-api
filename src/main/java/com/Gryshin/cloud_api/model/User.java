@@ -24,12 +24,17 @@ public class User {
     @Email(message = "Некоректний email")
     private String email;
 
-    public User() {}
+    private String role;
+
+    public User() {
+        this.role = "ROLE_USER";
+    }
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = "ROLE_USER";
     }
 
     public Long getId() {
@@ -48,6 +53,10 @@ public class User {
         return email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -62,5 +71,9 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
