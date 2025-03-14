@@ -11,12 +11,14 @@ public class FileEntity {
 
     private String fileName;
     private String filePath;
+    private String accessLevel;
 
     public FileEntity() {}
 
     public FileEntity(String fileName, String filePath) {
         this.fileName = fileName;
         this.filePath = filePath;
+        this.accessLevel = "private";
     }
 
     public Long getId() {
@@ -31,6 +33,10 @@ public class FileEntity {
         return filePath;
     }
 
+    public String getAccessLevel() {
+        return accessLevel;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -41,5 +47,9 @@ public class FileEntity {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
     }
 }
